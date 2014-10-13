@@ -16,3 +16,4 @@ end
 
 require 'appleseed/template/course'
 require 'appleseed/template/assignment'
+require 'appleseed/template/quiz'

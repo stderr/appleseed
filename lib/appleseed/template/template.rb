@@ -15,3 +15,4 @@ module Appleseed
 end
 
 require 'appleseed/template/course'
+require 'appleseed/template/assignment'

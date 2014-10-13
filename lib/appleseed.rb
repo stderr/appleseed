@@ -1,4 +1,5 @@
-require 'pandarus'
+require 'active_support/core_ext/string'
+require 'appleseed/template/template'
 
 module Appleseed
 

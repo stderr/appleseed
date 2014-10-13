@@ -1,0 +1,2 @@
+# Don't checkin Gemfile.lock when working on a gem
+Gemfile.lock

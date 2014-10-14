@@ -5,8 +5,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 Gem::Specification.new do |spec|
   spec.name          = "appleseed"
   spec.version       = "0.0.1"
-  spec.authors       = ["Josh Simpson"]
-  spec.email         = ["jsimpson@instructure.com"]
+  spec.authors       = ["Josh Simpson", "Spencer Olson"]
+  spec.email         = ["jsimpson@instructure.com", "solson@instructure.com"]
   spec.summary       = %q{Appleseed}
   spec.description   = "Seed canvas-lms with realistic user data."
   spec.homepage      = "http://www.instructure.com/"
@@ -21,6 +21,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency "activesupport", "~> 4.1"
   spec.add_dependency "faker", "~> 1.4"
   spec.add_dependency "colorize", "~> 0.7"
+  spec.add_dependency "thor", "~> 0.19"
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake", "~> 10.3"

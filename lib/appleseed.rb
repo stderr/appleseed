@@ -5,6 +5,12 @@ require 'appleseed/templating/templating'
 require 'appleseed/seeding/seeding'
 
 module Appleseed
+  def self.seed(file)
+    yaml = File.read(file)
+    template = Appleseed::Templating.from(yaml)
+    Appleseed::Seeding.seed_with(template)
+  end
+
   def self.root
     File.dirname __dir__
   end
@@ -27,10 +33,9 @@ module Appleseed
   end
 
   class Config
-    attr_accessor :template_directory, :api_url, :api_token
+    attr_accessor :api_url, :api_token
 
     def initialize
-      @template_directory = File.join Appleseed.root, 'templates'
       @api_url = "http://localhost:3000/api"
       @api_token = nil
     end

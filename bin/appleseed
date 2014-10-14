@@ -1,0 +1,20 @@
+# vi:syntax=ruby
+#
+# This is a placeholder where I can put the actual executable. Right now I'm just using this for local testing
+# against my canvas instance.
+# You can too:
+# 1. Generate an API token
+# 2. Replace the existing one in here
+# 3. Run bundle exec ruby bin/appleseed
+#
+require 'appleseed'
+# don't get excited, it's a dummy local api token
+Appleseed.configure { |c| c.api_token = '1~JYDZKYMtbhiSbrepwEZqPO7ZLKoxPsS1hG72YwvPpDTP5vM5fWcWRRMitOeKCrFD' }
+yaml = <<-eos
+course:
+  size: large
+eos
+
+template = Appleseed::Templating.from(yaml)
+Appleseed::Seeding.seed_with(template)
+

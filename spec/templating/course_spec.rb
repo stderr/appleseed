@@ -32,7 +32,7 @@ module Appleseed
 
       context "#scoped_attrs" do
         it "contains the account_id" do
-          c = Course.new({account_id: 5})
+          c = Course.new({ "account_id" => 5})
           expect(c.scoped_attrs.size).to eq(1)
           expect(c.scoped_attrs).to include(5)
         end

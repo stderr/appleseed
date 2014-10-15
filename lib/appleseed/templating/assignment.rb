@@ -4,7 +4,7 @@ module Appleseed
       attr_accessor :submission_type
 
       def initialize(data={})
-        @submission_type = data[:submission_type] || "text_entry"
+        @submission_type = data.fetch("submission_type", "text_entry")
       end
 
       def seed_data

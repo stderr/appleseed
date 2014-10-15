@@ -4,9 +4,9 @@ module Appleseed
       attr_accessor :title, :description, :quiz_type, :published, :course_id
 
       def initialize(data={})
-        @published = data.fetch(:published, true)
-        @quiz_type = data.fetch(:quiz_type, "assignment")
-        @course_id = data.fetch(:course_id, 1)
+        @published = data.fetch("published", true)
+        @quiz_type = data.fetch("quiz_type", "assignment")
+        @course_id = data.fetch("course_id", 1)
       end
 
       def seed_data

@@ -5,12 +5,12 @@ module Appleseed
       def self.create_method; :enroll_user_courses; end
 
       def initialize(data={})
-        raise "You must supply a course_id to Enrollment" unless data.key?(:course_id)
-        raise "You must supply a user_id to Enrollment" unless data.key?(:user_id)
+        raise "You must supply a course_id to Enrollment" unless data.key?("course_id")
+        raise "You must supply a user_id to Enrollment" unless data.key?("user_id")
 
-        @course_id = data[:course_id]
-        @user_id = data[:user_id]
-        @type = data[:type] || "StudentEnrollment"
+        @course_id = data["course_id"]
+        @user_id = data["user_id"]
+        @type = data["type"] || "StudentEnrollment"
       end
 
       def seed_data

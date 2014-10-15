@@ -4,7 +4,7 @@ module Appleseed
       attr_accessor :account_id
 
       def initialize(data={})
-        @account_id = data[:account_id] || 1
+        @account_id = data["account_id"] || 1
       end
 
       def seed_data

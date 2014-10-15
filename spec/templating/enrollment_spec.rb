@@ -3,21 +3,21 @@ require 'spec_helper'
 module Appleseed
   module Templating
     describe Enrollment do
-      let(:enrollment) { Enrollment.new({course_id: 1, user_id: 5}) }
+      let(:enrollment) { Enrollment.new({"course_id" => 1, "user_id" => 5}) }
 
       context "#initialize" do
         context "raises an exception" do
           it "if course_id isn't passed" do
-            expect { Enrollment.new({user_id: 5}) }.to raise_error
+            expect { Enrollment.new({"user_id" => 5}) }.to raise_error
           end
           it "if user_id isn't passed" do
-            expect { Enrollment.new({course_id: 1}) }.to raise_error
+            expect { Enrollment.new({"course_id" => 1}) }.to raise_error
           end
         end
 
         context "doesn't raise an exception" do
           it "if both course_id and user_id are passed" do
-            expect { Enrollment.new({course_id: 1, user_id: 5}) }.to_not raise_error
+            expect { Enrollment.new({"course_id" => 1, "user_id" => 5}) }.to_not raise_error
           end
         end
       end
@@ -52,7 +52,7 @@ module Appleseed
         it "contains the course_id, user_id, and enrollment_type, in that order" do
           user_id = 5
           course_id = 1
-          e = Enrollment.new({user_id: user_id, course_id: course_id, type: "TeacherEnrollment"})
+          e = Enrollment.new({"user_id" => user_id, "course_id" => course_id, "type" => "TeacherEnrollment"})
           expect(e.scoped_attrs).to eq([course_id, user_id, "TeacherEnrollment"])
         end
       end

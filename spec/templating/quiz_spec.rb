@@ -49,7 +49,7 @@ module Appleseed
 
 			context "#scoped_attrs" do
 				it "contains the course_id" do
-					q = Quiz.new(course_id: 5)
+					q = Quiz.new("course_id" => 5)
 					expect(q.scoped_attrs.size).to eq(1)
 					expect(q.scoped_attrs).to include(5)
 				end

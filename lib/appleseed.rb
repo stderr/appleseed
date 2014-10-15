@@ -1,4 +1,6 @@
 require 'pandarus'
+require 'appleseed/ext/pandarus/model_base'
+
 require 'colorize'
 require 'active_support/core_ext/string'
 require 'appleseed/templating/templating'

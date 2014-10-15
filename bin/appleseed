@@ -7,13 +7,15 @@ class Appleseed::CommandInterface < Thor
   method_option :token, aliases: "-t", desc: "Specify an API token."
   method_option :url, aliases: "-u", desc: "Specify the API url"
 
-  def seed(file, url=nil)
+  def seed(*files) #i got rid of the url=nil here. will this blow something up? i tried leaving it in but caused isues with the *files
     Appleseed.configure do |c|
       c.api_token = options[:token]
       c.api_url = options[:url] if options[:url]
     end
-
-    Appleseed.seed(file)
+    
+    files.each do |file|
+      Appleseed.seed(file)
+    end
   end
 end
 

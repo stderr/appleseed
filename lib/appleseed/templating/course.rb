@@ -32,10 +32,6 @@ module Appleseed
             puts "Enrolling #{user.name}...".yellow
             yield Appleseed::Templating::Enrollment.new(course_id: canvas_id, user_id: user.canvas_id)
           end
-
-          quiz = Appleseed::Templating::Quiz.new(course_id: canvas_id)
-          puts "Creating quiz: #{quiz.title}...".green
-          yield(quiz)
         end
       end
 

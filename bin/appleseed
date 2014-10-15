@@ -12,7 +12,7 @@ class Appleseed::CommandInterface < Thor
       c.api_token = options[:token]
       c.api_url = options[:url] if options[:url]
     end
-    
+
     files.each do |file|
       Appleseed.seed(file)
     end

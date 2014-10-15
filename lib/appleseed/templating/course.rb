@@ -1,7 +1,7 @@
 module Appleseed
   module Templating
     class Course < BaseTemplate
-      attr_accessor :size, :activity
+      attr_accessor :size, :activity, :account_id
 
       def self.create_method; :create_new_course; end
 
@@ -19,22 +19,19 @@ module Appleseed
         }
       end
 
-      def process # ack better name plz
-        # this has gotten out of control, but it provides a pleasant DSL, at least.
-        # definitely needs refactoring.
+      def generate
         puts "Creating course: #{name}...".red
         puts ("-"*10).yellow
 
         yield(self)
         size_as_num.times do |n|
-          user = Appleseed::Templating::User.new(account_id: @account_id)
+          user = Appleseed::Templating::User.new(account_id: account_id)
           puts "Creating user: #{user.name}...".blue
           yield user
           if user.canvas_id
             puts "Enrolling #{user.name}...".yellow
             yield Appleseed::Templating::Enrollment.new(course_id: canvas_id, user_id: user.canvas_id)
           end
-
         end
       end
 
@@ -45,8 +42,9 @@ module Appleseed
       end
 
       def scoped_attrs
-        [@account_id]
+        [account_id]
       end
+
       private
       def size_as_num
         # whatever numbers for right now

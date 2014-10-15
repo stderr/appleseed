@@ -1,12 +1,10 @@
 module Appleseed
   module Templating
-    class User
-      attr_accessor :scoped_id, :canvas_id
-
-      def self.create_method; :create_user; end
+    class User < BaseTemplate
+      attr_accessor :account_id
 
       def initialize(data={})
-        @scoped_id = data[:account_id] || 1
+        @account_id = data[:account_id] || 1
       end
 
       def seed_data
@@ -23,6 +21,10 @@ module Appleseed
 
       def name
         @name ||= Faker::Name.name
+      end
+
+      def scoped_attrs
+        [@account_id]
       end
 
       # todo: need dupe checking here.

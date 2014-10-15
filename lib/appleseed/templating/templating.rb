@@ -15,6 +15,7 @@ module Appleseed
   end
 end
 
+require 'appleseed/templating/base_template'
 require 'appleseed/templating/course'
 require 'appleseed/templating/assignment'
 require 'appleseed/templating/quiz'

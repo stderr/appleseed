@@ -1,14 +1,14 @@
 module Appleseed
   module Templating
-    class Course
-    	attr_accessor :size, :activity, :scoped_id, :canvas_id
+    class Course < BaseTemplate
+      attr_accessor :size, :activity
 
       def self.create_method; :create_new_course; end
 
       def initialize(data={})
         @size = data[:size] || "medium"
         @activity = data[:activity] || "moderate"
-        @scoped_id = data[:account_id] || 1
+        @account_id = data[:account_id] || 1
       end
 
       def seed_data
@@ -27,7 +27,7 @@ module Appleseed
 
         yield(self)
         size_as_num.times do |n|
-          user = Appleseed::Templating::User.new(account_id: scoped_id)
+          user = Appleseed::Templating::User.new(account_id: @account_id)
           puts "Creating user: #{user.name}...".blue
           yield user
           if user.canvas_id
@@ -44,6 +44,9 @@ module Appleseed
                    Faker::Hacker.noun.pluralize].join(" ").titleize
       end
 
+      def scoped_attrs
+        [@account_id]
+      end
       private
       def size_as_num
         # whatever numbers for right now

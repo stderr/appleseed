@@ -3,8 +3,8 @@ module Appleseed
     class User < BaseTemplate
       attr_accessor :account_id
 
-      def initialize(data={})
-        @account_id = data["account_id"] || 1
+      def initialize(fields={})
+        @account_id = fields[:account_id] || 1
       end
 
       def seed_data

@@ -4,13 +4,13 @@ module Appleseed
       attr_accessor :user_id, :course_id, :type
       def self.create_method; :enroll_user_courses; end
 
-      def initialize(data={})
-        raise "You must supply a course_id to Enrollment" unless data.key?("course_id")
-        raise "You must supply a user_id to Enrollment" unless data.key?("user_id")
+      def initialize(fields={})
+        raise "You must supply a course_id to Enrollment" unless fields.key?(:course_id)
+        raise "You must supply a user_id to Enrollment" unless fields.key?(:user_id)
 
-        @course_id = data["course_id"]
-        @user_id = data["user_id"]
-        @type = data["type"] || "StudentEnrollment"
+        @course_id = fields[:course_id]
+        @user_id = fields[:user_id]
+        @type = fields[:type] || "StudentEnrollment"
       end
 
       def seed_data

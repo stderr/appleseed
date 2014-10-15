@@ -5,10 +5,10 @@ module Appleseed
 
       def self.create_method; :create_new_course; end
 
-      def initialize(data={})
-        @size = data["size"] || "medium"
-        @activity = data["activity"] || "moderate"
-        @account_id = data["account_id"] || 1
+      def initialize(fields={})
+        @size = fields[:size] || "medium"
+        @activity = fields[:activity] || "moderate"
+        @account_id = fields[:account_id] || 1
       end
 
       def seed_data
@@ -25,12 +25,12 @@ module Appleseed
 
         yield(self)
         size_as_num.times do |n|
-          user = Appleseed::Templating::User.new("account_id" => account_id)
+          user = Appleseed::Templating::User.new(account_id: account_id)
           puts "Creating user: #{user.name}...".blue
           yield user
           if user.canvas_id
             puts "Enrolling #{user.name}...".yellow
-            yield Appleseed::Templating::Enrollment.new("course_id" => canvas_id, "user_id" => user.canvas_id)
+            yield Appleseed::Templating::Enrollment.new(course_id: canvas_id, user_id: user.canvas_id)
           end
         end
       end

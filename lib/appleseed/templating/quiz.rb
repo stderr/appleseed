@@ -3,10 +3,10 @@ module Appleseed
     class Quiz < BaseTemplate
       attr_accessor :title, :description, :quiz_type, :published, :course_id
 
-      def initialize(data={})
-        @published = data.fetch("published", true)
-        @quiz_type = data.fetch("quiz_type", "assignment")
-        @course_id = data.fetch("course_id", 1)
+      def initialize(fields={})
+        @published = fields.fetch(:published, true)
+        @quiz_type = fields.fetch(:quiz_type, "assignment")
+        @course_id = fields.fetch(:course_id, 1)
       end
 
       def seed_data

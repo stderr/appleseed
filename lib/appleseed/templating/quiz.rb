@@ -1,12 +1,13 @@
 module Appleseed
   module Templating
     class Quiz < BaseTemplate
-      attr_accessor :title, :description, :quiz_type, :published, :course_id
+      attr_accessor :title, :description, :quiz_type, :published, :course_id, :size, :canvas_id
 
       def initialize(fields={})
         @published = fields.fetch(:published, true)
         @quiz_type = fields.fetch(:quiz_type, "assignment")
-        @course_id = fields.fetch(:course_id, 1)
+        @course_id = fields.fetch(:course_id, Appleseed.cache["course"].sample)
+        @size = fields.fetch(:size, "small")
       end
 
       def seed_data
@@ -23,6 +24,11 @@ module Appleseed
       def generate
         puts "Creating quiz: #{title}...".green
         yield(self)
+
+        size_as_num.times do |n|
+          puts "Creating question...".blue
+          yield QuizQuestion.new(course_id: course_id, quiz_id: canvas_id)
+        end
       end
 
       def title
@@ -37,6 +43,18 @@ module Appleseed
       def scoped_attrs
         [course_id]
       end
+
+      private
+      def size_as_num
+        r = Random.new
+        {
+          small: r.rand(2..5),
+          medium: r.rand(10..20),
+          large: r.rand(40..60)
+        }[size.to_sym]
+      end
+
+
     end
   end
 end

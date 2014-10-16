@@ -1,5 +1,6 @@
 require 'pandarus'
 require 'appleseed/ext/pandarus/model_base'
+require 'appleseed/ext/pandarus/v1_api'
 
 require 'colorize'
 require 'active_support/core_ext/string'
@@ -11,6 +12,10 @@ module Appleseed
     yaml = File.read(file)
     template = Appleseed::Templating.from(yaml)
     Appleseed::Seeding.seed_with(template)
+  end
+
+  def self.cache
+    @cache ||= Hash.new([])
   end
 
   def self.root

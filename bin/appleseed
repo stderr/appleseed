@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'appleseed'
 require 'thor'
+require 'byebug'
 
 class Appleseed::CommandInterface < Thor
   desc "seed", "Seed Canvas with data from a YAML template."

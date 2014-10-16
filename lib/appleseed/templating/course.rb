@@ -6,9 +6,11 @@ module Appleseed
       def self.create_method; :create_new_course; end
 
       def initialize(fields={})
-        @size = fields[:size] || "medium"
-        @activity = fields[:activity] || "moderate"
-        @account_id = fields[:account_id] || 1
+        raise "You must supply an account_id to Course" unless fields.key?(:account_id)
+
+        @size = fields.fetch(:size, "medium")
+        @activity = fields.fetch(:activity, "moderate")
+        @account_id = fields.fetch(:account_id)
       end
 
       def seed_data

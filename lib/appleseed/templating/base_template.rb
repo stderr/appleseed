@@ -12,6 +12,10 @@ module Appleseed
       def seed_data
         {}
       end
+
+      def pull_from_cache(kind)
+        Appleseed.cache.fetch(kind).sample
+      end
     end
   end
 end

@@ -8,7 +8,7 @@ module Appleseed
       end
 
       def clear
-        @store = {}
+        @store = Hash.new([])
       end
     end
   end

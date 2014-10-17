@@ -20,6 +20,7 @@ end
 
 require 'appleseed/templating/base_template'
 require 'appleseed/templating/course'
+require 'appleseed/templating/course_section'
 require 'appleseed/templating/assignment'
 require 'appleseed/templating/quiz'
 require 'appleseed/templating/quiz_question'

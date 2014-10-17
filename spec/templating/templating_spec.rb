@@ -3,8 +3,10 @@ require 'spec_helper'
 module Appleseed
   describe Templating do
     describe ".from" do
-      it "loads a template from a YAML string" do
-        expect(Templating.from(yaml)).to be_kind_of(Appleseed::Templating::Course)
+      it "loads an array of templates from a YAML string" do
+        templates = Templating.from(yaml)
+        expect(templates).to be_kind_of Array
+        expect(templates.first).to be_kind_of Appleseed::Templating::Course
       end
     end
 

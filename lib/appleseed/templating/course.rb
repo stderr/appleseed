@@ -2,7 +2,6 @@ module Appleseed
   module Templating
     class Course < BaseTemplate
       attr_accessor :size, :activity, :account_id
-
       def self.create_method; :create_new_course; end
 
       def initialize(fields={})
@@ -23,10 +22,16 @@ module Appleseed
 
       def generate
         puts "Creating course: #{name}...".red
-        puts ("-"*10).yellow
 
-        yield(self)
-        size_as_num.times do |n|
+       yield(self)
+
+        2.times do
+          section = Appleseed::Templating::CourseSection.new(course_id: canvas_id)
+          puts "...creating section #{section.name}"
+          yield(section)
+        end
+
+        size_as_num.times do
           user = Appleseed::Templating::User.new(account_id: account_id)
           puts "Creating user: #{user.name}...".blue
           yield user

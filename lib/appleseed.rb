@@ -1,6 +1,5 @@
 require 'pandarus'
 require 'appleseed/ext/pandarus/model_base'
-require 'appleseed/ext/pandarus/v1_api'
 
 require 'uri'
 require 'faraday'

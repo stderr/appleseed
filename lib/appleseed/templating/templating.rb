@@ -11,7 +11,9 @@ module Appleseed
 
     def self.load(template)
       type = template.keys.first
-      self.const_get(type.to_s.camelize).new(template[type])
+      (1..(template[:count] || 1)).map do
+        self.const_get(type.to_s.camelize).new(template[type])
+      end
     end
   end
 end

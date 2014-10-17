@@ -20,5 +20,6 @@ module Appleseed
         Appleseed.cache[cache_key] << t.canvas_id
       end
     end
+
   end
 end

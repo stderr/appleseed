@@ -26,7 +26,7 @@ module Appleseed
         yield(self)
 
         size_as_num.times do |n|
-          puts "Creating question...".blue
+          puts "...generating question".blue
           yield QuizQuestion.new(course_id: course_id, quiz_id: canvas_id)
         end
       end

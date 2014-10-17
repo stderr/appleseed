@@ -14,8 +14,10 @@ require 'appleseed/api/api'
 module Appleseed
   def self.seed(file)
     yaml = File.read(file)
-    template = Appleseed::Templating.from(yaml)
-    Appleseed::Seeding.seed_with(template)
+    templates = Appleseed::Templating.from(yaml)
+    templates.each do |template|
+      Appleseed::Seeding.seed_with(template)
+    end
   end
 
   def self.cache

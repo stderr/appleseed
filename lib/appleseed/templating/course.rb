@@ -31,7 +31,7 @@ module Appleseed
           puts "Creating user: #{user.name}...".blue
           yield user
           if user.canvas_id
-            puts "Enrolling #{user.name}...".yellow
+            puts "...enrolling".yellow
             yield Appleseed::Templating::Enrollment.new(course_id: canvas_id, user_id: user.canvas_id)
           end
         end

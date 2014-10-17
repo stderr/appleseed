@@ -25,19 +25,22 @@ module Appleseed
 
        yield(self)
 
-        2.times do
-          section = Appleseed::Templating::CourseSection.new(course_id: canvas_id)
-          puts "...creating section #{section.name}"
+        Random.new.rand(2..6).times do
+          section = CourseSection.new(course_id: canvas_id)
+          puts "...creating section #{section.name}".yellow
           yield(section)
         end
 
         size_as_num.times do
-          user = Appleseed::Templating::User.new(account_id: account_id)
+          user = User.new(account_id: account_id)
           puts "Creating user: #{user.name}...".blue
           yield user
           if user.canvas_id
             puts "...enrolling".yellow
-            yield Appleseed::Templating::Enrollment.new(course_id: canvas_id, user_id: user.canvas_id)
+            yield Enrollment.new(course_id: canvas_id, user_id: user.canvas_id)
+            if rand <= 0.5
+              yield SectionEnrollment.new(section_id: Appleseed.cache['course_section'].sample, user_id: user.canvas_id)
+            end
           end
         end
       end

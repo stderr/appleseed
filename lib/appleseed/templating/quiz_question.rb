@@ -2,7 +2,7 @@ module Appleseed
   module Templating
     class QuizQuestion < BaseTemplate
       attr_accessor :question_type, :quiz_id, :course_id
-      def self.create_method; :create_single_quiz_question; end
+      def self.custom_request?; true; end
 
       def initialize(fields={})
         raise "You must supply a course_id to QuizQuestion" unless fields.key?(:course_id)
@@ -49,8 +49,13 @@ module Appleseed
       def question_name
         @question_name ||= Faker::Lorem.word.capitalize
       end
+
       def question_text
         @question_text ||= Faker::Lorem.sentence(3, false, 7)
+      end
+
+      def endpoint
+        "/api/v1/courses/#{course_id}/quizzes/#{quiz_id}/questions"
       end
     end
   end

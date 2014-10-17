@@ -2,10 +2,14 @@ require 'pandarus'
 require 'appleseed/ext/pandarus/model_base'
 require 'appleseed/ext/pandarus/v1_api'
 
+require 'uri'
+require 'faraday'
 require 'colorize'
 require 'active_support/core_ext/string'
+
 require 'appleseed/templating/templating'
 require 'appleseed/seeding/seeding'
+require 'appleseed/api/api'
 
 module Appleseed
   def self.seed(file)
@@ -25,7 +29,13 @@ module Appleseed
   def self.client
     raise "You must supply a valid API token to use Appleseed" unless Appleseed.config.api_token
 
-    @client ||= Pandarus::Client.new(prefix: Appleseed.config.api_url, token: Appleseed.config.api_token)
+    @client ||= Pandarus::Client.new(prefix: URI.join(Appleseed.config.api_url, "api").to_s, token: Appleseed.config.api_token)
+  end
+
+  def self.custom_client
+    raise "You must supply a valid API token to use Appleseed" unless Appleseed.config.api_token
+
+    @custom_client ||= Faraday.new(url: Appleseed.config.api_url)
   end
 
   # Configuration
@@ -43,7 +53,7 @@ module Appleseed
     attr_accessor :api_url, :api_token
 
     def initialize
-      @api_url = "http://localhost:3000/api"
+      @api_url = "http://localhost:3000"
       @api_token = nil
     end
   end

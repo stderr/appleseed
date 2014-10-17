@@ -1,7 +1,7 @@
 module Appleseed
   module Templating
     class QuizQuestion < BaseTemplate
-      attr_accessor :question_type, :quiz_id, :course_id
+      attr_accessor :question_type, :quiz_id, :course_id, :points_possible
       def self.custom_request?; true; end
 
       def initialize(fields={})
@@ -41,10 +41,6 @@ module Appleseed
                       collection
        end
      end
-
-      def scoped_attrs
-        [course_id, quiz_id, question_name, question_text]
-      end
 
       def question_name
         @question_name ||= Faker::Lorem.word.capitalize

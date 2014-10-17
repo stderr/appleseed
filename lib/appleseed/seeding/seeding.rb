@@ -10,8 +10,8 @@ module Appleseed
           canvas_id = JSON.parse(response.body)[:id]
         else
           canvas_id = Appleseed.client.send(t.class.create_method, *t.scoped_attrs, t.seed_data).id
+          t.canvas_id = canvas_id
         end
-        t.canvas_id = canvas_id
 
         cache_key = t.class.name.demodulize.underscore
         unless Appleseed.cache.has_key? cache_key

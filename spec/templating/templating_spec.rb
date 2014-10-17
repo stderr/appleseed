@@ -12,6 +12,7 @@ module Appleseed
       <<-eos
 course:
   size: large
+  account_id: 1
       eos
     end
   end

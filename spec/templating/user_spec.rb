@@ -3,15 +3,9 @@ require 'spec_helper'
 module Appleseed
   module Templating
     describe User do
-      let(:user) { User.new }
+      let(:user) { User.new(account_id: 1) }
 
-      context "#initialize" do
-        it "defaults to an account_id of 1" do
-          expect(user.account_id).to eq(1)
-        end
-      end
-
-      context "#seed_data" do
+      describe "#seed_data" do
         it "scopes to 'user' and 'pseudonym'" do
           expect(user.seed_data).to have_key(:user)
           expect(user.seed_data).to have_key(:pseudonym)
@@ -37,9 +31,9 @@ module Appleseed
         end
       end
 
-      context "#scoped_attrs" do
+      describe "#scoped_attrs" do
         it "contains the account_id" do
-          u = User.new({"account_id" => 5})
+          u = User.new(account_id: 5)
           expect(u.scoped_attrs.size).to eq(1)
           expect(u.scoped_attrs).to include(5)
         end
